@@ -2,21 +2,21 @@ package main
 
 import (
 	"fmt"
-	"math/big"
 
-	trapdoorcommitment "github.com/hl-tang/generic-adaptor-signature-from-trapdoor-commitment/trapdoorCommitment"
+	"github.com/hl-tang/generic-adaptor-signature-from-trapdoor-commitment/trapdoorCommitment"
 )
 
 func main() {
 	// Create TrapdoorCommitDL instance
-	tc := trapdoorcommitment.NewTrapdoorCommitDL()
+	tc := trapdoorCommitment.NewTrapdoorCommitDL()
 
 	// Key generation
 	ck, td := tc.Gen()
 	fmt.Printf("Commitment Key: %s\nTrapdoor: %s\n", ck, td)
 
 	// Commit a message
-	m0 := big.NewInt(42)
+	// m0 := big.NewInt(0)
+	m0 := "0"
 	c, d0 := tc.Com(ck, m0)
 	fmt.Printf("Commitment: %s\nOpening: %s\n", c, d0)
 
@@ -25,7 +25,9 @@ func main() {
 	fmt.Printf("Verification result: %v\n", ver)
 
 	// Adapt commitment to a new message
-	m := big.NewInt(100)
+	// m := big.NewInt(100)
+	// m := "100"
+	m := "message"
 	newD := tc.TrapdoorOpen(td, c, m0, d0, m)
 	fmt.Printf("New Opening: %s\n", newD)
 

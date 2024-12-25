@@ -1,8 +1,7 @@
-package trapdoorcommitment
+package trapdoorCommitment
 
 import (
 	"fmt"
-	"math/big"
 	"testing"
 )
 
@@ -15,7 +14,8 @@ func TestTrapdoorCommitDL(t *testing.T) {
 	fmt.Printf("Commitment Key: %s\nTrapdoor: %s\n", ck, td)
 
 	// Commit a message
-	m0 := big.NewInt(42)
+	// m0 := big.NewInt(0)
+	m0 := "0"
 	c, d0 := tc.Com(ck, m0)
 	fmt.Printf("Commitment: %s\nOpening: %s\n", c, d0)
 
@@ -24,7 +24,9 @@ func TestTrapdoorCommitDL(t *testing.T) {
 	fmt.Printf("Verification result: %v\n", ver)
 
 	// Adapt commitment to a new message
-	m := big.NewInt(100)
+	// m := big.NewInt(100)
+	// m := "100"
+	m := "message"
 	newD := tc.TrapdoorOpen(td, c, m0, d0, m)
 	fmt.Printf("New Opening: %s\n", newD)
 
