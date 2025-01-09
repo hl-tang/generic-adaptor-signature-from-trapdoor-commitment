@@ -64,16 +64,16 @@ func main() {
 
 	adaptor_compSig := as_ecdsa.Adapt(pk, m, preSig, as_ecdsa.Witness)
 	fmt.Println("Complete Adaptor Sig:", adaptor_compSig)
-	fmt.Println("Ada-sig == Original Sig", adaptor_compSig == sig)
+	// fmt.Println("Ada-sig == Original Sig", adaptor_compSig == sig)
 	fmt.Println("Verify Adaptor Sig:", as_ecdsa.Ver(pk, m, adaptor_compSig))
 
-	extractedWitness, err := as_ecdsa.Ext(pk, m, as_ecdsa.Statement, preSig, sig)
-	if err != nil {
-		fmt.Printf("Error extracting trapdoor: %v\n", err)
-	} else {
-		fmt.Printf("Extracted Trapdoor: %s\n", extractedWitness)
-	}
-	extractedWitness, err = as_ecdsa.Ext(pk, m, as_ecdsa.Statement, preSig, adaptor_compSig)
+	// extractedWitness, err := as_ecdsa.Ext(pk, m, as_ecdsa.Statement, preSig, sig)
+	// if err != nil {
+	// 	fmt.Printf("Error extracting trapdoor: %v\n", err)
+	// } else {
+	// 	fmt.Printf("Extracted Trapdoor: %s\n", extractedWitness)
+	// }
+	extractedWitness, err := as_ecdsa.Ext(pk, m, as_ecdsa.Statement, preSig, adaptor_compSig)
 	if err != nil {
 		fmt.Printf("Error extracting trapdoor: %v\n", err)
 	} else {
